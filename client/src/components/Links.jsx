@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Links() {
     return (
-        <div>
+        <div className="d-inline-flex">
             <React.Fragment>
                 <Link to="/" className="navbar-brand">
                     My first MERN demo application
