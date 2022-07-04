@@ -26,7 +26,7 @@ createMovie = (req, res) => {
             })
         })
         .catch(error => {
-            return res.staus(400).json({
+            return res.status(400).json({
                 error,
                 message: 'Movie not created!',
             })
@@ -125,7 +125,7 @@ getMovies = async (req, res) => {
             })
         }
         
-        if (movies.length === 0) {
+        if (!movies.length) {
             return res.status(404).json({
                 success: false,
                 error: 'No movies found!',
@@ -134,8 +134,8 @@ getMovies = async (req, res) => {
         return res.status(200).json({
             success: true,
             data: movies,
-        }).catch(err => console.log(err))
-    })
+        })
+    }).catch(err => console.log(err))
 }
 
 module.exports = {
