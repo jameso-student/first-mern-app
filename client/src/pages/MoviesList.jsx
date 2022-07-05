@@ -24,9 +24,24 @@ export default function MoviesList() {
 
     return (
         <Wrapper>
-            {isLoading ? 'Loading...' : movies.map(movie => (
-            <p>{movie.name}</p>
-        ))}
+            {isLoading ? 'Loading...' : 
+                <table className='table'>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Rating</th>
+                        <th>Time</th>
+                    </tr>
+                    {movies.map(movie => (
+                    <tr>
+                        <td>{movie._id}</td>
+                        <td>{movie.name}</td>
+                        <td>{movie.rating}</td>
+                        <td>{movie.time.join(' / ')}</td>
+                    </tr>
+                    ))}
+                </table>
+            }
         </Wrapper>
     );
 }
