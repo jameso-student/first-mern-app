@@ -1,17 +1,23 @@
 import React from "react";
-
+import styled from "styled-components";
 import Logo from "./Logo";
 import Links from "./Links";
 
+const Container = styled.div.attrs({
+    className: 'container',
+})``
+
+const Nav = styled.nav.attrs({
+    className: 'navbar navbar-expand-lg navbar-dark bg-dark mb-20',
+})``
+
 export default function NavBar() {
     return (
-        <React.Fragment>
-            <div className="container">
-                <div className="navbar navbar-expand-lg navbar-dark bg-dark mb-20">
-                    <Logo />
-                    <Links />
-                </div>
-            </div>
-        </React.Fragment>
+        <Container>
+            <Nav>
+                <Logo />
+                <Links />
+            </Nav>
+        </Container>
     );
 }

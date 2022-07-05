@@ -1,28 +1,39 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import styled from "styled-components";
+
+const Collapse = styled.div.attrs({
+    className: 'collpase navbar-collapse',
+})``
+
+const List = styled.div.attrs({
+    className: 'navbar-nav mr-auto',
+})``
+
+const Item = styled.div.attrs({
+    className: 'collpase navbar-collapse',
+})``
 
 export default function Links() {
     return (
-        <div className="d-inline-flex">
-            <React.Fragment>
-                <Link to="/" className="navbar-brand">
-                    My first MERN demo application
-                </Link>
-                <div className="collapse navbar-collapse">
-                    <div className="navbar-nav mr-auto">
-                        <div className="collpase navbar-collapse">
-                            <Link to="/movies/list" className="nav-link">
-                                List Movies
-                            </Link>
-                        </div>
-                        <div className="collpase navbar-collapse">
-                            <Link to="/movies/create" className="nav-link">
-                                Create Movie
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </React.Fragment>
-        </div>
+        <React.Fragment>
+            <Link to="/" className="navbar-brand">
+                My first MERN Application
+            </Link>
+            <Collapse>
+                <List>
+                    <Item>
+                        <Link to="/movies/list" className="nav-link">
+                            List Movies
+                        </Link>
+                    </Item>
+                    <Item>
+                        <Link to="/movies/create" className="nav-link">
+                            Create Movie
+                        </Link>
+                    </Item>
+                </List>
+            </Collapse>
+        </React.Fragment>
     );
 }
