@@ -22,14 +22,9 @@ export default function MoviesList() {
         fetchMovies();
     }, [])
 
-    let showTable = true
-    if (!movies.length) {
-        showTable = false
-    }
-
     return (
         <Wrapper>
-            {isLoading ? 'waiting' : movies.map(movie => (
+            {isLoading ? 'Loading...' : movies.map(movie => (
             <p>{movie.name}</p>
         ))}
         </Wrapper>
