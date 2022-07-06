@@ -73,7 +73,7 @@ updateMovie = async (req, res) => {
 }
 
 deleteMovie = async (req, res) => {
-    await Movie.findOneAndDelete({ _id: req.params.id }, (err, movie) => {
+    Movie.findOneAndDelete({ _id: req.params.id }, (err, movie) => {
         if (err) {
             return res.status(400).json({ 
                 success: false,
@@ -90,7 +90,7 @@ deleteMovie = async (req, res) => {
         return res.status(200).json({
             success: true,
             data: movie,
-        }).catch(err => console.log(err))
+        })
     })
 }
 
@@ -112,12 +112,12 @@ getMovieById = async (req, res) => {
         return res.status(200).json({
             success: true,
             data: movie,
-        }).catch(err => console.log(err))
+        })
     })
 }
 
 getMovies = async (req, res) => {
-    await Movie.find({}, (err, movies) => {
+    Movie.find({}, (err, movies) => {
         if (err) {
             return res.status(400).json({
                 success: false,
@@ -135,7 +135,7 @@ getMovies = async (req, res) => {
             success: true,
             data: movies,
         })
-    }).catch(err => console.log(err))
+    })
 }
 
 module.exports = {
