@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import api from '../api';
 import styled from "styled-components";
@@ -38,7 +38,7 @@ export default function MoviesUpdate() {
     const params = useParams();
     const [name, setName] = useState('');
     const [rating, setRating] = useState('');
-    const [time, setTime] = useState();
+    const [time, setTime] = useState('');
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -52,7 +52,7 @@ export default function MoviesUpdate() {
             })
         }
         fetchMovie()
-    }, [])
+    }, [params.id])
 
     const handleChangeInputName = async event => {
         setName(event.target.value);
@@ -67,7 +67,7 @@ export default function MoviesUpdate() {
     }
 
     const handleMovieUpdate = async () => {
-        const timeArray = time.split('/');
+        const timeArray = time.split(' / ');
         const payload = {
             name,
             rating,
@@ -76,15 +76,46 @@ export default function MoviesUpdate() {
 
         await api.updateMovieById(params.id, payload).then(res => {
             window.alert('Movie updated successfully');
-            setName('');
-            setRating('');
-            setTime(''); 
+            window.location.reload();
         });
     }
 
     return (
         <Wrapper>
-            <p>Form to update movies will be here</p>
+            {
+                isLoading ? 'Loading...' :
+                <>
+                    <Title>Update Movie</Title>
+                    <Label>Name: </Label>
+                    <InputText
+                        type="text"
+                        value={name}
+                        onChange={handleChangeInputName}
+                    />
+        
+                    <Label>Rating: </Label>
+                    <InputText
+                        type="number"
+                        step="0.1"
+                        lang="en-US"
+                        min="0"
+                        max="10"
+                        pattern="[0-9]+([,\.][0-9]+)?"
+                        value={rating}
+                        onChange={handleChangeInputRating}
+                    />
+        
+                    <Label>Time: </Label>
+                    <InputText
+                        type="text"
+                        value={time}
+                        onChange={handleChangeInputTime}
+                    />
+        
+                    <Button onClick={handleMovieUpdate}>Update Movie</Button>
+                    <CancelButton href={'/movies/list'}>Cancel</CancelButton>
+                </>
+            }
         </Wrapper>
     );
 }
