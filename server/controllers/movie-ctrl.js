@@ -95,7 +95,7 @@ deleteMovie = async (req, res) => {
 }
 
 getMovieById = async (req, res) => {
-    await Movie.find({ _id: req.params.id }, (err, movie) => {
+    Movie.find({ _id: req.params.id }, (err, movie) => {
         if (err) {
             return res.status(400).json({
                 success: false,
